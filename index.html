@@ -40,12 +40,51 @@
   </div><!-- /.container-fluid -->
 </nav>
     
-    <div class="container">
-      
+    <div class="container"></div>
+
+    <!--New Recipe Template -->
+
+    <div class="container max-width float-left">
+      <div id="new-recipe-form-temp"class="text-center new-recipe-form">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" id="" placeholder="Ingredient">
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" id="" placeholder="Quantity">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="" placeholder="Unit of Measurement">
+          </div>
+          <button type="submit" class="btn btn-default">Submit Ingredient</button>
+        </form>
+        
+          <ul class="list-group ingredient-list">
+          </ul>
+          <button type="submit" class="btn btn-default">Submit Recipe</button>
+      </div>
+    </div>
+
+    <!-- Recipe Library Template-->
+
+    <div id="recipe-library-temp "class="recipe-library new-recipe-form float-right max-width">
+      <div class="page-header">
+        <h3>Recipes</h3>
+        <ul class="recipe-library-list">
+          <li id="recipe-item-temp" class="list-group-item"><h5 class="recipe-title">Enter Recipe...</h5></li>
+          
+        </ul>
     </div>
   
     <div class="templates display-none">  
       
+    <!--Ingredient Template  -->
+      <li id="ingredient-temp" class="list-group-item ingredient-item text-center">
+        <span class="ingredient-name"></span>
+        <span class="ingredient-quantity"></span>
+        <span class="ingredient-unit"></span>
+      </li> 
+
      <!--  Recipe Item Template -->
       <li id="recipe-item-temp" class="list-group-item"><h5 class="recipe-title">Enter Recipe...</h5></li> 
   

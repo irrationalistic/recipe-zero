@@ -1,3 +1,31 @@
+///Ingredient Class
+var Ingredient = function(name, quantity, unit){
+	this.name = name;
+	this.quantity = quantity;
+	this.unit = unit;
+	this.render();
+};
+Ingredient.prototype.render = function(){
+	this.el = $('#ingredient-temp')
+		.clone()
+		.attr('id',null);
+	console.log(this.el);
+	this.el.find('.ingredient-name').text(this.name);
+	this.el.find('.ingredient-quantity').text(this.quantity);
+	this.el.find('.ingredient-unit').text(this.unit);
+	$('.ingredient-list').append(this.el);
+};
+
+// var bacon = new Ingredient('bacon', 8, 'oz');
+// var onion = new Ingredient('onion',1,'whole');
+// var sage = new Ingredient('sage',12,'leaves');
+// var rosemary = new Ingredient('rosemary',1,'sprigs');
+// var thyme = new Ingredient('thyme',5,'sprigs');
+// var liver = new Ingredient('liver',1,'lb');
+// var cognac = new Ingredient('cognac',1/2,'cups');
+// var salt = new Ingredient('salt',1/4,'tsp');
+// var lard = new Ingredient('lard',1/2,'cup');
+
 //Recipe Class
 var Recipe = function(name, ingredientsArr){ 
 	this.name = name;
@@ -5,14 +33,20 @@ var Recipe = function(name, ingredientsArr){
 	this.render();
 };
 Recipe.prototype.render = function() {
-	this.elCalendar = $('#recipe-item-temp')
+	this.el = $('#recipe-item-temp')
 		.clone()
 		.attr('id', null);
-	this.elCalendar.find('.recipe-title').text(this.name);
-	return this.elCalendar;
+	this.el.find('.recipe-title').text(this.name);
+	// $('.new-recipe-form').append(this.el);
+	return this.el;
 };
-var testRecipe = new Recipe('chicken', ['chicken','salt']);
+var baconLiverPate= new Recipe('Bacon & Liver Pate', [bacon, onion,sage,rosemary,thyme,liver,cognac,salt,lard]);
 
+//Recipe Library
+var RecipeLibrary = function(name) {
+	this.name = name;
+	this.recipes = [];
+};
 
 
 // Meal Item Class
@@ -66,7 +100,7 @@ var extractElements = function(objArr){
 	}
 	return tempArray;
 };
-// var calendarDayTest = new CalendarDay('Sunday',mealObjArrFunc(['Breakfast','Lunch','Dinner', 'Dessert']));
+
 	
 //Meal Planner Class
 var Planner = function(daysArr,mealsArr){
