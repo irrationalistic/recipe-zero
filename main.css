@@ -1,0 +1,29 @@
+body {
+	background-color: #ecf0f1;
+	color:#2c3e50;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.float-right {
+	float:right;
+}
+
+.display-none{
+	display:none;
+}
+
+.meal-title {
+	margin:0;
+}
+
+.meal-item {
+  padding: 5px 10px;
+  background-color: #ecf0f1;
+}
+
+.dark-blue {
+	background-color: #2c3e50;
+}

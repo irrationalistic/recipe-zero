@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Recipe Zero</title>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    
+<nav class="navbar navbar-default dark-blue">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">rZ</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recipes<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Add New Recipe</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Breakfast</a></li>
+            <li><a href="#">Lunch</a></li>
+            <li><a href="#">Dinner</a></li>
+            <li><a href="#">Snacks</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    
+    <div class="container">
+      
+    </div>
+  
+    <div class="templates display-none">  
+      
+     <!--  Recipe Item Template -->
+      <li id="recipe-item-temp" class="list-group-item"><h5 class="recipe-title">Enter Recipe...</h5></li> 
+  
+
+      <!-- Meal Item Temp -->
+      <li id="meal-item-temp" class="list-group-item meal-item">
+      <button class="meal-item-button btn btn-default btn-xs btn-primary float-right">+</button>
+      <h5 class="meal-title">Breakfast</h5>
+        <ul class="recipe-list list-group">
+        </ul>
+      </li>  
+
+
+      <!-- Calendar Day Template -->
+      <div id="calendar-day-temp">
+        <h3 class="calendar-day-title text-center">Sunday</h3>         
+            <ul class="meal-item-list list-group">
+             
+            </ul>
+      </div> 
+
+      <!-- Meal Planner Template -->
+      <div id="meal-planner" class="container">
+        <div class="planner-content"></div>
+      </div>
+    </div>
+
+    
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
