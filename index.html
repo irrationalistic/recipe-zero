@@ -20,7 +20,6 @@
       </button>
       <a class="navbar-brand" href="#">rZ</a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -41,62 +40,69 @@
 </nav>
    
 
-   <!--  Sketchpad -->
+   
 
     <div class="container">
-     
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
-      Add Recipe
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          
-          <!-- Form to enter recipe name   -->
-            <h3 class="recipe-title"></h3>
-              <form class="recipe-name-form"> 
-                <input type="text" class="form-control" placeholder="Enter Recipe Name" id="recipe-name-input">
-                <input type="submit" class="form-control">            
-              </form> 
-            
-
-          </div>
-          <div class="modal-body">
-              
-         <!--  Form to enter new ingredients  -->
-            <form class="enter-ingredient-form"> 
-              <div class="form-group">
-                  <input type="text" class="form-control" placeholder="ingredient" id="ingredient-name">
-                  <input type="text" class="form-control" placeholder="quantity" id="ingredient-quantity">
-                  <input type="text" class="form-control" placeholder="units" id="ingredient-unit">
-                  <input type="submit" class="form-control">
-              </div> 
-            </form>
-
-            <div class="page-header">
-              <h4>Entered Ingredients:</h4>
+      <!-- New Recipe Modal -->
+      <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#newRecipe">
+          Add Recipe
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="newRecipe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <!-- Form to enter recipe name   -->
+                <h3 class="recipe-title"></h3>
+                  <form class="recipe-name-form"> 
+                    <input type="text" class="form-control" placeholder="Enter Recipe Name" id="recipe-name-input">
+                    <input type="submit" class="form-control">            
+                  </form> 
+              </div>
+              <div class="modal-body">
+             <!--  Form to enter new ingredients  -->
+                <form class="enter-ingredient-form"> 
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="ingredient" id="ingredient-name">
+                      <input type="text" class="form-control" placeholder="quantity" id="ingredient-quantity">
+                      <input type="text" class="form-control" placeholder="units" id="ingredient-unit">
+                      <input type="submit" class="form-control">
+                  </div> 
+                </form>
+                <div class="page-header">
+                  <h4>Entered Ingredients:</h4>
+                </div>
+               <!--  Ingredients List -->
+                <div class="ingredient-list">
+                </div>       
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary enter-recipe-button">Enter Recipe</button>
+              </div>
             </div>
-            
-           <!--  Ingredients List -->
-            <div class="ingredient-list">
-            </div>       
-          
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary enter-recipe-button">Enter Recipe</button>
           </div>
         </div>
-      </div>
+        
+        <!-- Recipe Library Modal -->
+       
+        <!-- Modal -->
+        <div class="modal fade" id="recipeLibrary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">my Recipes</h4>
+              </div>
+              <div class="modal-body recipe-library-modal-body">
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-
-    </div>
-
-
 
 
     <div class="templates display-none">  
@@ -113,11 +119,11 @@
       </li> 
   
       <!-- Recipe Library -->
-      <div id="recipe-library">TEST</div>
+      <div id="recipe-library"></div>
 
       <!-- Meal Item Temp -->
       <li id="meal-item-temp" class="list-group-item meal-item">
-      <button class="meal-item-button btn btn-default btn-xs btn-primary float-right">+</button>
+      <button class="meal-item-button btn btn-default btn-xs btn-primary float-right" data-toggle="modal" data-target="#recipeLibrary">+</button>
       <h5 class="meal-title">Breakfast</h5>
         <ul class="recipe-list list-group">
         </ul>
