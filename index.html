@@ -44,8 +44,7 @@
 
     <!--New Recipe Template -->
 
-    <div class="container max-width float-left">
-      <div id="new-recipe-form-temp"class="text-center new-recipe-form">
+      <div id="new-recipe-form-temp"class="text-center new-recipe-form display-none">
         <form>
           <div class="form-group">
             <input type="text" class="form-control" id="" placeholder="Ingredient">
@@ -63,21 +62,20 @@
           </ul>
           <button type="submit" class="btn btn-default">Submit Recipe</button>
       </div>
-    </div>
+    
 
     <!-- Recipe Library Template-->
-
-    <div id="recipe-library-temp "class="recipe-library new-recipe-form float-right max-width">
-      <div class="page-header">
-        <h3>Recipes</h3>
-        <ul class="recipe-library-list">
-          <li id="recipe-item-temp" class="list-group-item"><h5 class="recipe-title">Enter Recipe...</h5></li>
-          
-        </ul>
-    </div>
-  
-    <div class="templates display-none">  
       
+        <div class="page-header border-bottom text-center">
+          <h1>My Recipes</h1>
+        </div>
+        <button class="btn btn-default new-recipe-button">Enter New Recipe</button>
+        <ul class="list-group recipe-list-library">
+        </ul>
+
+
+
+    <div class="templates display-none">  
     <!--Ingredient Template  -->
       <li id="ingredient-temp" class="list-group-item ingredient-item text-center">
         <span class="ingredient-name"></span>
@@ -86,7 +84,9 @@
       </li> 
 
      <!--  Recipe Item Template -->
-      <li id="recipe-item-temp" class="list-group-item"><h5 class="recipe-title">Enter Recipe...</h5></li> 
+      <li id="recipe-item-temp" class="list-group-item">
+        <h5 class="recipe-title">Enter Recipe...</h5>
+      </li> 
   
 
       <!-- Meal Item Temp -->

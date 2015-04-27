@@ -16,15 +16,15 @@ Ingredient.prototype.render = function(){
 	$('.ingredient-list').append(this.el);
 };
 
-// var bacon = new Ingredient('bacon', 8, 'oz');
-// var onion = new Ingredient('onion',1,'whole');
-// var sage = new Ingredient('sage',12,'leaves');
-// var rosemary = new Ingredient('rosemary',1,'sprigs');
-// var thyme = new Ingredient('thyme',5,'sprigs');
-// var liver = new Ingredient('liver',1,'lb');
-// var cognac = new Ingredient('cognac',1/2,'cups');
-// var salt = new Ingredient('salt',1/4,'tsp');
-// var lard = new Ingredient('lard',1/2,'cup');
+var bacon = new Ingredient('bacon', 8, 'oz');
+var onion = new Ingredient('onion',1,'whole');
+var sage = new Ingredient('sage',12,'leaves');
+var rosemary = new Ingredient('rosemary',1,'sprigs');
+var thyme = new Ingredient('thyme',5,'sprigs');
+var liver = new Ingredient('liver',1,'lb');
+var cognac = new Ingredient('cognac',1/2,'cups');
+var salt = new Ingredient('salt',1/4,'tsp');
+var lard = new Ingredient('lard',1/2,'cup');
 
 //Recipe Class
 var Recipe = function(name, ingredientsArr){ 
@@ -65,7 +65,7 @@ Meal.prototype.render = function(){
 	});
 	return this.el;
 };
-// var testMeal = new Meal('Breakfast');
+var testMeal = new Meal('Breakfast');
 
 //helper function that takes in a mealSchedule Array and outputs 
 //and array of new meal objects
@@ -92,6 +92,7 @@ CalendarDay.prototype.render = function(){
 	this.el.find('.meal-item-list').append(extractElements(this.mealObjArr));
 	return this.el;
 };
+
 //helper function to extract elements from an array of objects
 var extractElements = function(objArr){
 	var tempArray = [];
