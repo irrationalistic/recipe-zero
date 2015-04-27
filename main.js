@@ -14,6 +14,7 @@ var Ingredient = function(name, quantity, unit){
 	this.quantity = quantity;
 	this.unit = unit;
 	this.render();
+
 };
 Ingredient.prototype.render = function(){
 	this.el = $('#ingredient-temp')
@@ -24,6 +25,16 @@ Ingredient.prototype.render = function(){
 	this.el.find('.ingredient-unit').text(this.unit);
 	$('.ingredient-list').append(this.el);
 };
+//Helper array to change objects to "stringifyable" objects for L.S.
+Ingredient.prototype.safeObj = function() {
+	// this.ingredientsArr = this.ingredientsArr.safeObj();
+	return {
+		name: this.name,
+		quantity: this.quantity,
+		unit: this.unit
+	};
+};
+
 
 //New Recipe Ingredients Library to house ingredients for new recipe
 var newRecipeIngredients = [];
@@ -40,7 +51,6 @@ Recipe.prototype.render = function() {
 		.clone()
 		.attr('id', null);
 	this.el.find('.recipe-title').text(this.title);
-	
 	var thisRecipe = this;
 	// Event hander for adding a recipe to a meal from the Recipe Library
 	this.el.on('click', function() {
@@ -53,11 +63,26 @@ Recipe.prototype.render = function() {
 					///Recipe Details Modal
 				})
 			);
-
 	});
-
 	return this.el;
 };
+//Helper array to change objects to "stringifyable" objects for L.S.
+Recipe.prototype.safeObj = function() {
+	
+	var safeObjIngredients = [];
+
+	for (var i = 0 ; i < this.ingredientsArr.length; i++) {
+		safeObjIngredients.push(this.ingredientsArr[i].safeObj());
+	}
+	console.log(safeObjIngredients);
+
+	return {
+		title: this.title,
+		ingredientsArr: this.ingredientsArr,
+		servings: this.servings
+	};
+};
+
 
 // Test Variables 
 
@@ -76,7 +101,7 @@ var baconLiverPate= new Recipe('Bacon & Liver Pate', [bacon, onion,sage,rosemary
 //Recipe Library
 var RecipeLibrary = function(name) {
 	this.name = name;
-	this.recipes = [baconLiverPate];
+	this.recipes = [];
 	this.render();
 };
 RecipeLibrary.prototype.render = function() {
@@ -86,12 +111,11 @@ RecipeLibrary.prototype.render = function() {
 	//Attach a reference to the meal clicked within each recipe
 	for (var i = 0 ; i < this.recipes.length ; i++) {
 		this.recipes[i].thisMeal = this.thisMeal;
-		console.log(this.recipes[i].thisMeal);
 	}
 
 	this.el.append(extractElements(this.recipes));
 	$('.recipe-library-modal-body').append(this.el);
-	console.log(this.thisMeal);
+	
 };
 var mainLibrary = new RecipeLibrary('My Recipes');
 
@@ -196,7 +220,13 @@ $(document).on('ready', function() {
   		$this = $(this);
   		var recipeTitle = $this.closest('.modal-content').find('.recipe-title').text();
   		if(newRecipeIngredients.length > 0 && recipeTitle.length > 0){
-  			mainLibrary.recipes.push(new Recipe(recipeTitle, newRecipeIngredients));
+  			var newRecipe = new Recipe(recipeTitle, newRecipeIngredients);	
+
+  			mainLibrary.recipes.push(newRecipe);
+
+  			console.log(newRecipe.safeObj());
+  			
+  			localStorage.recipes = JSON.stringify(newRecipe.safeObj());
   		}
   		
   		///reset everything
