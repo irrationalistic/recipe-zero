@@ -29,9 +29,10 @@ Ingredient.prototype.render = function(){
 var newRecipeIngredients = [];
 
 //Recipe Class
-var Recipe = function(title, ingredientsArr){ 
+var Recipe = function(title, ingredientsArr, servings){ 
 	this.title = title;
 	this.ingredientsArr=ingredientsArr;
+	this.servings = servings;
 	this.render();
 };
 Recipe.prototype.render = function() {
@@ -41,10 +42,18 @@ Recipe.prototype.render = function() {
 	this.el.find('.recipe-title').text(this.title);
 	
 	var thisRecipe = this;
+	// Event hander for adding a recipe to a meal from the Recipe Library
 	this.el.on('click', function() {
 		var mealClicked = thisRecipe.thisMeal.el;
 		var recipeClicked = thisRecipe.el;
-		mealClicked.find('.recipe-list').append(recipeClicked.clone());
+		//Event handler for when a receipe has already been  added to a meal
+		mealClicked.find('.recipe-list').append(
+			recipeClicked.clone()
+				.on('click', function() {
+					///Recipe Details Modal
+				})
+			);
+
 	});
 
 	return this.el;
