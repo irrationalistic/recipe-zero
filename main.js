@@ -1,3 +1,13 @@
+//helper function to extract elements from an array of objects
+var extractElements = function(objArr){
+	var tempArray = [];
+	for (var i = 0;i<objArr.length;i++){	
+		tempArray.push(objArr[i].el);
+	}
+	return tempArray;
+};
+
+
 ///Ingredient Class
 var Ingredient = function(name, quantity, unit){
 	this.name = name;
@@ -9,7 +19,6 @@ Ingredient.prototype.render = function(){
 	this.el = $('#ingredient-temp')
 		.clone()
 		.attr('id',null);
-	console.log(this.el);
 	this.el.find('.ingredient-name').text(this.name);
 	this.el.find('.ingredient-quantity').text(this.quantity);
 	this.el.find('.ingredient-unit').text(this.unit);
@@ -26,9 +35,14 @@ var cognac = new Ingredient('cognac',1/2,'cups');
 var salt = new Ingredient('salt',1/4,'tsp');
 var lard = new Ingredient('lard',1/2,'cup');
 
+
+//New Recipe Ingredients Library to house ingredients for new recipe
+var newRecipeIngredients = [];
+
+
 //Recipe Class
-var Recipe = function(name, ingredientsArr){ 
-	this.name = name;
+var Recipe = function(title, ingredientsArr){ 
+	this.title = title;
 	this.ingredientsArr=ingredientsArr;
 	this.render();
 };
@@ -36,8 +50,7 @@ Recipe.prototype.render = function() {
 	this.el = $('#recipe-item-temp')
 		.clone()
 		.attr('id', null);
-	this.el.find('.recipe-title').text(this.name);
-	// $('.new-recipe-form').append(this.el);
+	this.el.find('.recipe-title').text(this.title);
 	return this.el;
 };
 var baconLiverPate= new Recipe('Bacon & Liver Pate', [bacon, onion,sage,rosemary,thyme,liver,cognac,salt,lard]);
@@ -45,8 +58,18 @@ var baconLiverPate= new Recipe('Bacon & Liver Pate', [bacon, onion,sage,rosemary
 //Recipe Library
 var RecipeLibrary = function(name) {
 	this.name = name;
-	this.recipes = [];
+	this.recipes = [baconLiverPate];
+	this.render();
 };
+RecipeLibrary.prototype.render = function() {
+	this.el = $('#recipe-library')
+		.clone()
+		.attr('id', null);
+	this.el.append(extractElements(this.recipes));
+	$('body').append(this.el);
+};
+
+var mainLibrary = new RecipeLibrary('My Recipes');
 
 
 // Meal Item Class
@@ -92,16 +115,6 @@ CalendarDay.prototype.render = function(){
 	this.el.find('.meal-item-list').append(extractElements(this.mealObjArr));
 	return this.el;
 };
-
-//helper function to extract elements from an array of objects
-var extractElements = function(objArr){
-	var tempArray = [];
-	for (var i = 0;i<objArr.length;i++){	
-		tempArray.push(objArr[i].el);
-	}
-	return tempArray;
-};
-
 	
 //Meal Planner Class
 var Planner = function(daysArr,mealsArr){
@@ -127,6 +140,46 @@ var testPlanner = new Planner(['Sunday','Monday','Tuesday','Wednesday','Thursday
 
 //Doc Ready
 $(document).on('ready', function() {
+
+
+	//Event Hander for Entering Recipe Name
+	$('.recipe-name-form').on('submit',function(){
+		$this = $(this);
+		var recipeName = $this.find('#recipe-name-input').val();
+		if (recipeName.length !== 0){
+			$this.closest('.modal-header').find('.recipe-title').text(recipeName);
+		}
+		$this.find('#recipe-name-input').val('');
+		$this.find('#recipe-name-input').attr('placeholder','Edit Recipe Name');
+	});
+
+	//Event Handler for new Ingredients on Recipe Form
+	$('.enter-ingredient-form').on('submit', function() {
+		$this = $(this);
+		var name = $this.find('#ingredient-name').val();
+		var quantity = $this.find('#ingredient-quantity').val();
+		var unit = $this.find('#ingredient-unit').val();
+		$this.find('#ingredient-name').val('');
+		$this.find('#ingredient-quantity').val('');
+		$this.find('#ingredient-unit').val('');
+		var newIngredient = new Ingredient(name, quantity, unit);
+		newRecipeIngredients.push(newIngredient);
+	});
   
+  	//Event Handler for Submitting New Recipe
+  	$('.enter-recipe-button').on('click', function(){
+  		console.log(this);
+  		$this = $(this);
+  		var recipeTitle = $this.closest('.modal-content').find('.recipe-title').text();
+  		if(newRecipeIngredients.length > 0 && recipeTitle.length > 0){
+  			mainLibrary.recipes.push(new Recipe(recipeTitle, newRecipeIngredients));
+  		}
+  		
+  		///reset everything
+		$this.closest('.modal-content').find('.recipe-title').text('');
+		$this.closest('.modal-content').find('.ingredient-list').empty();
+		newRecipeIngredients = [];
+  	});
   
+
 });
