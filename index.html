@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Recipe Zero</title>
+    <title>tagl</title>
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">rZ</a>
+      <a class="navbar-brand" href="#">tagl</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,7 +45,7 @@
     <div class="container">
       <!-- New Recipe Modal -->
       <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#newRecipe">
+        <button type="button" class="btn btn-primary float-right add-recipe-button" data-toggle="modal" data-target="#newRecipe">
           Add Recipe
         </button>
         <!-- Modal -->
@@ -102,6 +102,29 @@
             </div>
           </div>
         </div>
+        
+
+        <!-- Recipe Details Modal -->
+        <div class="modal fade" id="recipe-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close close-recipe-details" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="recipe-details-title" id="myModalLabel">Recipe Title</h4>
+              </div>
+              <div class="modal-body">
+                <h5>Servings: <span class="recipe-details-servings"></span></h5>
+                <h5>Ingredients:</h5>
+                <ul class="recipe-details-ingredients"></ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default close-recipe-details" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
     </div>
 
 
