@@ -7,8 +7,20 @@ var extractElements = function(objArr){
 	return tempArray;
 };
 
-var recipeDetailsModal = $('#recipe-details-modal');
+//compile helper function 
 
+var compile = function(array){
+	var flatArray =  _.flatten(array);
+	flatArray.map(function(i){
+		console.log(flatArray[i]);
+	});
+
+	return flatArray;
+};
+
+var recipeDetailsModal = $('#recipe-details-modal');
+var recipeLibraryModal =  $('#recipeLibrary');
+var ingredientList = $('.ingredient-list');
 
 ///Ingredient Class
 var Ingredient = function(name, quantity, unit){
@@ -25,8 +37,7 @@ Ingredient.prototype.render = function(){
 	this.el.find('.ingredient-name').text(this.name);
 	this.el.find('.ingredient-quantity').text(this.quantity);
 	this.el.find('.ingredient-unit').text(this.unit);
-	//Refactor
-	$('.ingredient-list').append(this.el);
+	ingredientList.append(this.el);
 };
 //Helper array to change objects to "stringifyable" objects for L.S.
 Ingredient.prototype.safeObj = function() {
@@ -59,8 +70,9 @@ Recipe.prototype.render = function() {
 	this.el.on('click', function() {
 		var mealClicked = thisRecipe.thisMeal.el;
 		var recipeClicked = thisRecipe.el;
-		$('#recipeLibrary').modal('hide');
-
+		recipeLibraryModal.modal('hide');
+		mainCompile.ingredientsArr.push(thisRecipe.ingredientsArr);
+		console.log(mainCompile.ingredientsArr);
 		//Event handler for when a receipe has already been  added to a meal
 		mealClicked.find('.recipe-list').append(
 			recipeClicked.clone()
@@ -142,7 +154,6 @@ RecipeLibrary.prototype.render = function() {
 };
 var mainLibrary = new RecipeLibrary('My Recipes');
 
-
 // Meal Item Class
 var Meal = function(thisMeal) {
 	this.thisMeal = thisMeal;
@@ -208,6 +219,16 @@ Planner.prototype.render = function(){
 };
 
 var testPlanner = new Planner(['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],['Breakfast','Lunch','Dinner']);
+
+//Complile Library
+
+var CompileLibrary = function(ingredientsArr) {
+	this.ingredientsArr = ingredientsArr;
+};
+
+
+var mainCompile = new CompileLibrary([[bacon, onion, liver, salt, lard],[almonds, coconutFlour,driedCranberries,sugar,eggs],[bacon2, avocado, eggs2, salt2],[chickenBreast,onion2,bacon3,tortillaChips]]);
+
 
 
 //Doc Ready
