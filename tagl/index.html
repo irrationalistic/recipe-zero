@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>tagl</title>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+
+    <form action="" class="new-plan">
+      
+      Name your Meal Plan: <input type="text"> <br>
+      
+      I am planning for 
+
+      <select name="" id="new-plan-number-days">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+      </select> 
+      
+
+      days, <br>
+
+      starting on 
+
+      <select name="" id="new-plan-weekday">
+        <option value="Sunday">Sunday</option>
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+      </select>, 
+      
+      <br>
+      
+      including the following meals per day:
+
+      <br>
+
+      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-breakfast" value="Breakfast"> Breakfast
+      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-morning-snack" value="Morning Snack"> Morning Snack
+      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-lunch" value="Lunch"> Lunch
+      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-afternoon-snack" value="Afternoon Snack"> Afternoon Snack
+      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-dinner" value="Dinner"> Dinner
+      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-dessert" value="Dessert"> Dessert
+      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-midnight-snack" value="Midnight Snack"> Midnight Snack
+      
+      <br>
+
+      <input type="submit">
+
+    </form>
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
