@@ -7,65 +7,164 @@
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
   <body>
+    <!-- New Meal Plan Modal -->
+    <button class="btn btn-primary new-meal-plan-button" data-toggle="modal" data-target="#newMealPlanModal">New Meal Plan</button>
+    <div class="modal fade" id="newMealPlanModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">New Meal Plan</h4>
+          </div>
+          <div class="modal-body">
+            <form action="" class="new-plan">
+              Name your Meal Plan:
+              <div class="form-group">
+                <input id="mean-plan-name" class="form-control" type="text"> 
+              </div>
+              How many Days are you Planning for?
+              <div class="form-group">
+                <select name="" id="new-plan-number-days" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select> 
+              </div>
+              On which day does your Meal Plan start?
+              <div class="form-group">
+                <select  class="form-control" name="" id="new-plan-weekday">
+                  <option value="Sunday">Sunday</option>
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                </select>
+              </div>
+              Which meals would you like to include in your plan?
+              <div class="checkbox">
+                <label for=""><input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-breakfast" value="Breakfast"> Breakfast </label>
+                <label for=""><input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-morning-snack" value="Morning Snack"> Morning Snack </label>
+                <label for=""><input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-lunch" value="Lunch"> Lunch </label>
+                <label for=""><input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-afternoon-snack" value="Afternoon Snack"> Afternoon Snack </label>
+                <label for=""><input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-dinner" value="Dinner"> Dinner </label>
+                <label for=""><input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-dessert" value="Dessert"> Dessert </label>
+                <label for=""><input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-midnight-snack" value="Midnight Snack"> Midnight Snack </label>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <form action="" class="new-plan">
+    <!-- New Recipe Modal -->
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg enter-new-recipe" data-toggle="modal" data-target="#newRecipeForm">
+      Enter New Recipe
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="newRecipeForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <!-- Form to enter recipe name   -->
+            <h3>Recipe Name: <span class="recipe-title"></span></h3>
+              <form class="recipe-name-form"> 
+                <input type="text" class="form-control" placeholder="Enter Recipe Name" id="recipe-name-input">
+                <input type="submit" class="form-control">            
+              </form> 
+            <!-- Form to enter recipe servings   -->
+            <h3>Servings: <span class="recipe-servings"></span></h3>
+              <form action="" class="recipe-servings-form">
+                <input type="text" class="form-control" placeholder="Enter Serving Size (#)" id="recipe-servings-input">
+                <input type="submit" class="form-control"> 
+              </form>
+          </div>
+          <div class="modal-body">
+
+            <!--  Form to enter new ingredients  -->
+               <form class="enter-ingredient-form"> 
+                 <div class="form-group">
+                     <input type="text" class="form-control" placeholder="ingredient" id="ingredient-name">
+                     <input type="text" class="form-control" placeholder="quantity" id="ingredient-quantity">
+                     <input type="text" class="form-control" placeholder="units" id="ingredient-unit">
+                     <input type="submit" class="form-control">
+                 </div> 
+               </form>
+               <div class="page-header">
+                 <h4>Entered Ingredients:</h4>
+               </div>
+              <!--  Ingredients List -->
+               <div class="ingredient-list">
+                <ul class="ingredient-list-ul">
+                  
+                </ul>
+              </div>       
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary enter-recipe-button" data-dismiss="modal">Save Recipe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates -->
+    <div class="templates display-none"> 
       
-      Name your Meal Plan: <input id="mean-plan-name" type="text"> <br>
-      
-      I am planning for 
+      <!-- Meal Planner Template -->
+      <div id="meal-planner" class="container planner-content">
+          <h3 class="meal-plan-name">Meal Plan Name</h3>
+      </div>
 
-      <select name="" id="new-plan-number-days">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-      </select> 
-      
+      <!-- Calendar Day Template -->
+      <div id="calendar-day-temp">
+        <h4 class="calendar-day-name text-center">Sunday</h4>         
+            <ul class="meal-item-list list-group">
+             
+            </ul>
+      </div> 
 
-      days, <br>
+      <!-- Meal Item Temp -->
+      <li id="meal-item-temp" class="list-group-item meal-item">
+      <button class="meal-item-button btn btn-default btn-xs btn-primary float-right" data-toggle="modal" data-target="#recipeLibrary">+</button>
+      <h5 class="meal-title">Breakfast</h5>
+        <ul class="recipe-list list-group">
+        </ul>
+      </li>  
 
-      starting on 
+      <!-- Ingredients Temp-->
+      <li id="ingredient-temp" class="list-group-item ingredient-item text-center">
+        <span class="ingredient-name"></span>
+        <span class="ingredient-quantity"></span>
+        <span class="ingredient-unit"></span>
+      </li> 
 
-      <select name="" id="new-plan-weekday">
-        <option value="Sunday">Sunday</option>
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <option value="Wednesday">Wednesday</option>
-        <option value="Thursday">Thursday</option>
-        <option value="Friday">Friday</option>
-        <option value="Saturday">Saturday</option>
-      </select>, 
-      
-      <br>
-      
-      including the following meals per day:
+      <!--  Recipe Item Template -->
+       <li id="recipe-item-temp" class="list-group-item">
+         <h5 class="recipe-title">Enter Recipe...</h5>
+       </li> 
 
-      <br>
-
-      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-breakfast" value="Breakfast"> Breakfast
-      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-morning-snack" value="Morning Snack"> Morning Snack
-      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-lunch" value="Lunch"> Lunch
-      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-afternoon-snack" value="Afternoon Snack"> Afternoon Snack
-      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-dinner" value="Dinner"> Dinner
-      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-dessert" value="Dessert"> Dessert
-      <input type="checkbox" class = "meal-input-checkbox" name="check[]" id="checkbox-midnight-snack" value="Midnight Snack"> Midnight Snack
-      
-      <br>
-
-      <input type="submit">
-
-    </form>
+      <!-- Recipe Library -->
+      <div id="recipe-library"></div>
+  
+    </div>
 
     
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
