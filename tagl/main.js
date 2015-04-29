@@ -68,12 +68,8 @@ Recipe.prototype.render = function(){
 		.clone()
 		.attr('id', null);
 	this.el.find('.recipe-title').text(this.title);
-	this.ingredientEls = extractElements(this.ingredients);
-};
 
-// Recipe.prototype.renderListEls = function(){
-// 	this.listEls = extractElements(this.ingredients);
-// };
+};
 
 var RecipeLibrary = function(name){
 	this.name = name;
@@ -81,11 +77,7 @@ var RecipeLibrary = function(name){
 	this.render();
 };
 RecipeLibrary.prototype.render = function(){
-	this.el = $('#recipe-library')
-		.clone()
-		.attr('id',null);
-	this.el.append(extractElements(this.recipes));
-	$('body').append(this.el);
+
 };
 
 var Ingredient = function(name, quantity, unit){
@@ -182,13 +174,20 @@ $(document).on('ready', function() {
 		var thisMealPlan = new Planner(mealPlanName, dayObjects);
 	});
 
+	var recipeNameForm = $('.recipe-name-form');
+	var recipeServingsForm = $('.recipe-servings-form');
+	var enterIngredientForm = $('.enter-ingredient-form');
+	var enterRecipeButton = $('.enter-recipe-button');
+	var ingredientListUl = $('.ingredient-list-ul');
+	var enterNewRecipe = $('.enter-new-recipe');
+	
 	//Enter New Recipe Button//
-	$('.enter-new-recipe').on('click', function(){
+	enterNewRecipe.on('click', function(){
 		var thisRecipe = new Recipe();
 	
 		//Enter Recipe Name//
 		//REFACTOR//
-		$('.recipe-name-form').on('submit', function(e){
+		recipeNameForm.on('submit', function(e){
 			e.preventDefault();
 			$this = $(this);
 			var recipeName = $this.find('#recipe-name-input').val();
@@ -203,7 +202,7 @@ $(document).on('ready', function() {
 
 		//Enter Recipe Servings//
 		//REFACTOR//
-		$('.recipe-servings-form').on('submit', function(e){
+		recipeServingsForm.on('submit', function(e){
 			e.preventDefault();
 			$this = $(this);
 			var recipeServings = $this.find('#recipe-servings-input').val();
@@ -217,26 +216,27 @@ $(document).on('ready', function() {
 
 		//Enter Recipe Ingredients//
 		//REFACTOR//
-		$('.enter-ingredient-form').on('submit', function(e){
+		enterIngredientForm.on('submit', function(e){
 			e.preventDefault();
 			$this = $(this);
 			var name = $this.find('#ingredient-name').val();
 			var quantity = $this.find('#ingredient-quantity').val();
 			var unit = $this.find('#ingredient-unit').val();
+			$this.find('#ingredient-name').val('');
+			$this.find('#ingredient-quantity').val('');
+			$this.find('#ingredient-unit').val('');
 			var thisIngredient = new Ingredient(name, quantity, unit);
 			thisRecipe.ingredients.push(thisIngredient);
-			myIngredientLibrary.ingredients.push(thisIngredient);
-			$('.ingredient-list-ul').append(thisRecipe.listEls);
-			//Render recipe to update ingredient ELS
-			thisRecipe.render();
-			$('.ingredient-list-ul').append(thisRecipe.ingredientEls);
-			console.log(thisRecipe);
+			console.log(thisIngredient);
+			ingredientListUl.append(thisIngredient.el);
 		});
 
-		$('.enter-recipe-button').on('click', function(){
+		enterRecipeButton.on('click', function(){
+			$('.recipe-title').text('');
+			$('.ingredient-list-ul').empty();
+
 			myRecipeLibrary.recipes.push(thisRecipe);
-			myRecipeLibrary.render();
-			alert(thisRecipe.name + 'has been added to ' + myRecipeLibrary.name);
+			console.log(myRecipeLibrary);
 		});
 
 	});
