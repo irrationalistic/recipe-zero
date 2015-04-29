@@ -67,7 +67,8 @@ Recipe.prototype.render = function(){
 	this.el = $('#recipe-item-temp')
 		.clone()
 		.attr('id', null);
-	this.el.find('.recipe-title').text(this.title);
+	console.log(this.name);
+	this.el.find('.recipe-title').text(this.name);
 	this.ingredientEls = extractElements(this.ingredients);
 };
 
@@ -84,8 +85,11 @@ RecipeLibrary.prototype.render = function(){
 	this.el = $('#recipe-library')
 		.clone()
 		.attr('id',null);
-	this.el.append(extractElements(this.recipes));
-	$('body').append(this.el);
+	console.log(this.el);
+	console.log(this.el.find('.recipe-library-ul'));
+	$('.ingredient-list-ul').append(extractElements(this.recipes));
+	console.log(extractElements(this.recipes));
+	
 };
 
 var Ingredient = function(name, quantity, unit){
@@ -235,8 +239,12 @@ $(document).on('ready', function() {
 
 		$('.enter-recipe-button').on('click', function(){
 			myRecipeLibrary.recipes.push(thisRecipe);
+			thisRecipe.render();
 			myRecipeLibrary.render();
+			
 			alert(thisRecipe.name + 'has been added to ' + myRecipeLibrary.name);
+			console.log(thisRecipe.el);
+			console.log(thisRecipe.name);
 		});
 
 	});
