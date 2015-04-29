@@ -1,10 +1,10 @@
-var Planner = function(name, days){
-	this.days = days;
+var Planner = function(name, daysArr){
+	this.daysArr = daysArr;
 	this.name = name;
 };
 
-var Day = function(name, meals){
-	this.meals = meals;
+var Day = function(name, mealsArr){
+	this.mealsArr = mealsArr;
 	this.name = name;
 };
 
@@ -19,20 +19,24 @@ var Recipe = function(name, ingredients, servings){
 	this.servings = servings;
 };
 
+var RecipeLibrary = function(name){
+	this.name = name;
+	this.recipes = [];
+};
+
 var Ingredient = function(name, quantity, unit){
 	this.name = name;
 	this.quantity = quantity;
 	this.unit = unit;
 };
 
-var RecipeLibrary = function(name, recipes){
+var IngredientLibrary = function(name){
 	this.name = name;
-	this.recipes = recipes;
+	this.ingredients = [];
 };
 
 
 //Helper functions
-
 var arrayOfDays = function(number, startingDay){
 	var plannerArray = [];
 	var week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -42,8 +46,6 @@ var arrayOfDays = function(number, startingDay){
 	}
 	return plannerArray;
 };
-
-
 
 
 // Ingredients & Recipes
@@ -76,44 +78,45 @@ var chickenTortillaSoup = new Recipe('Chicken Tortilla Soup', [chickenBreast,oni
 //Meals
 var breakfast = new Meal('Breakfast', [baconEggsAvo, almondButterBars]);
 var lunch = new Meal('Lunch', [chickenTortillaSoup, baconLiverPate]);
-
 //Days
 var monday = new Day('Monday',[breakfast, lunch]);
 var tuesday = new Day('Tuesday', [breakfast, lunch]);
-
 //Planner
 var planner = new Planner('my Meal Planner',[monday, tuesday]);
-
 //Recipe Library
 var library = new RecipeLibrary('my Recipe Library', [baconLiverPate, almondButterBars,baconEggsAvo, chickenTortillaSoup]);
 
 
-
-
 $(document).on('ready', function() {
-  	
-  	
-
 	$('.new-plan').on('submit', function(e){
 		e.preventDefault();
-		//gets checkbox vals
-		var checkboxVals = [];
+		//Gets Meal Plan Name
+		var mealPlanName = $('#mean-plan-name').val();
+		//Gets Meal Values
+		var selectedMeals = [];
 		$('input:checkbox[name="check[]"]').each(function() {
 		    if (this.checked) {
-		        checkboxVals.push(this.value);
+		        selectedMeals.push(this.value);
 		    }
 		});
-		
-		console.log(checkboxVals);
-
+		//Gets Number of Days
 		var numberDays = $('#new-plan-number-days').val();
-		
-
-		var tempDay = new Day();
-
-		console.log(numberDays);
+		//Gets Starting Day
+		var startingDay = $('#new-plan-weekday').val();
+		//Creates "array of days" from Number of Days & Starting Day
+		var daysArray = arrayOfDays(numberDays,startingDay);
+		//Create new Meal for each value in selectedMeals & push to an array of Meal Objects
+		var mealObjects = _.map(selectedMeals, function(i){
+			return new Meal(i);
+		});
+		//Create new Day for each day in daysArray
+		var dayObjects = _.map(daysArray, function(i){
+			return new Day(i, mealObjects);
+		});
+		//Create new Meal Plan
+		var thisMealPlan = new Planner(mealPlanName, dayObjects);
+		console.log(thisMealPlan);
 	});
-
 });
 
 
