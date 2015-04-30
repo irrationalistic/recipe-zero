@@ -55,6 +55,11 @@ Meal.prototype.render = function(){
 		.clone()
 		.attr('id', null);
 	this.el.find('.meal-title').text(this.name);
+	console.log(this.el);
+	console.log(this.el.find('.meal-item-button'));
+	this.el.find('.meal-item-button').on('click', function(){
+		console.log("hello");
+	});
 	$('.meal-item-list').append(this.el);
 };
 ////////
@@ -65,6 +70,19 @@ var Ingredient = function(name, quantity, unit){
 	this.name = name;
 	this.quantity = quantity;
 	this.unit = unit;
+	this.render();
+	this.toMyLibrary();
+};
+Ingredient.prototype.render = function(){
+	this.el = $('#ingredient-temp')
+		.clone()
+		.attr('id', null);
+	this.el.find('.ingredient-name').text(this.name);
+	this.el.find('.ingredient-quantity').text(this.quantity);
+	this.el.find('.ingredient-unit').text(this.unit);
+};
+Ingredient.prototype.toMyLibrary = function(){
+	myIngredientLibrary.ingredients.push(this);
 };
 
 var IngredientLibrary = function(name){
@@ -72,24 +90,33 @@ var IngredientLibrary = function(name){
 	this.ingredients = [];
 };
 
-
 var Recipe = function(){
 	this.ingredients = [];
+	this.ingredientEls = [];
 	this.name = '';
 	this.servings = 0;
+};
+Recipe.prototype.render = function(){
+	this.el = $('#recipe-item-temp')
+		.clone()
+		.attr('id',null);
+	this.el.find('.recipe-title').text(this.name);
 };
 Recipe.prototype.addIngredient = function(name, quantity, unit){
 	var newIngredient = new Ingredient(name, quantity, unit);
 	this.ingredients.push(newIngredient);
-	myIngredientLibrary.ingredients.push(newIngredient);
+	this.ingredientEls.push(newIngredient.el);
 };
 
 var RecipeLibrary = function(name){
 	this.name = name;
 	this.recipes = [];
+	this.recipeEls = [];
 };
 RecipeLibrary.prototype.addRecipe = function(recipeObj){
+	recipeObj.render();
 	this.recipes.push(recipeObj);
+	this.recipeEls.push(recipeObj.el);
 };
 
 
@@ -99,7 +126,12 @@ RecipeLibrary.prototype.addRecipe = function(recipeObj){
 var myIngredientLibrary = new IngredientLibrary('my Ingredients');
 var myRecipeLibrary = new RecipeLibrary('my Recipes');
 
+
+
+
+
 // // Ingredients & Recipes
+
 var baconLiverPate = new Recipe();
 var bacon = new Ingredient('bacon', 8, 'oz');
 var onion = new Ingredient('onion',1,'whole');
@@ -116,130 +148,8 @@ var sugar = new Ingredient('sugar', 1, 'cup');
 var eggs = new Ingredient('eggs', 1, 'whole');
 
 
-// var bacon2 = new Ingredient('bacon', 2, 'oz');
-// var avocado = new Ingredient('avocado', 1, 'whole');
-// var eggs2 = new Ingredient('eggs', 2, 'whole');
-// var salt2 = new Ingredient('salt',1/4,'tsp');
-// var baconEggsAvo = new Recipe('Bacon & Eggs & Avocado', [bacon2, avocado, eggs2, salt2], 1);
-
-// var chickenBreast = new Ingredient('chicken breast', 1/5, 'lb');
-// var onion2 = new Ingredient('onion', 2 , 'whole');
-// var bacon3 = new Ingredient('bacon', 4, 'oz');
-// var tortillaChips = new Ingredient('tortilla chips', 8, 'oz');
-// var chickenTortillaSoup = new Recipe('Chicken Tortilla Soup', [chickenBreast,onion2,bacon3,tortillaChips], 6);
-
-// //Meals
-// var breakfast = new Meal('Breakfast', [baconEggsAvo, almondButterBars]);
-// var lunch = new Meal('Lunch', [chickenTortillaSoup, baconLiverPate]);
-// //Days
-// var monday = new Day('Monday',[breakfast, lunch]);
-// var tuesday = new Day('Tuesday', [breakfast, lunch]);
-// //Planner
-// var planner = new Planner('my Meal Planner',[monday, tuesday]);
-// //Recipe Library
-// var library = new RecipeLibrary('my Recipe Library', [baconLiverPate, almondButterBars,baconEggsAvo, chickenTortillaSoup]);
 
 
-$(document).on('ready', function() {
-	$('.new-plan').on('submit', function(e){
-		e.preventDefault();
-		//Gets Meal Plan Name
-		var mealPlanName = $('#mean-plan-name').val();
-		//Gets Meal Values
-		var selectedMeals = [];
-		$('input:checkbox[name="check[]"]').each(function() {
-		    if (this.checked) {
-		        selectedMeals.push(this.value);
-		    }
-		});
-		//Gets Number of Days
-		var numberDays = $('#new-plan-number-days').val();
-		//Gets Starting Day
-		var startingDay = $('#new-plan-weekday').val();
-		//Creates "array of days" from Number of Days & Starting Day
-		var daysArray = arrayOfDays(numberDays,startingDay);
-		//Create new Meal for each value in selectedMeals & push to an array of Meal Objects
-		var mealObjects = _.map(selectedMeals, function(i){
-			return new Meal(i);
-		});
-		//Create new Day for each day in daysArray
-		var dayObjects = _.map(daysArray, function(i){
-			return new Day(i, mealObjects);
-		});
-		//Create new Meal Plan
-		var thisMealPlan = new Planner(mealPlanName, dayObjects);
-	});
-
-	// var recipeNameForm = $('.recipe-name-form');
-	// var recipeServingsForm = $('.recipe-servings-form');
-	// var enterIngredientForm = $('.enter-ingredient-form');
-	// var enterRecipeButton = $('.enter-recipe-button');
-	// var ingredientListUl = $('.ingredient-list-ul');
-	// var enterNewRecipe = $('.enter-new-recipe');
-	
-	// //Enter New Recipe Button//
-	// enterNewRecipe.on('click', function(){
-	// 	var thisRecipe = new Recipe();
-	
-	// 	//Enter Recipe Name//
-	// 	//REFACTOR//
-	// 	recipeNameForm.on('submit', function(e){
-	// 		e.preventDefault();
-	// 		$this = $(this);
-	// 		var recipeName = $this.find('#recipe-name-input').val();
-	// 		if (recipeName.length !== 0){
-	// 			$this.closest('.modal-header').find('.recipe-title').text(recipeName);
-	// 		}
-	// 		$this.find('#recipe-name-input').val('');
-	// 		$this.find('#recipe-name-input').attr('placeholder','Edit Recipe Name');
-	// 		//Sets name value on thisRecipe obj equal to the input
-	// 		thisRecipe.name = recipeName;
-	// 	});
-
-	// 	//Enter Recipe Servings//
-	// 	//REFACTOR//
-	// 	recipeServingsForm.on('submit', function(e){
-	// 		e.preventDefault();
-	// 		$this = $(this);
-	// 		var recipeServings = $this.find('#recipe-servings-input').val();
-	// 		if (recipeServings !== 0){
-	// 			$this.closest('.modal-header').find('.recipe-servings').text(recipeServings);
-	// 		}
-	// 		$this.find('#recipe-servings-input').val('');
-	// 		$this.find('#recipe-servings-input').attr('placeholder','Edit Servings');
-	// 		thisRecipe.servings = recipeServings;
-	// 	});
-
-	// 	//Enter Recipe Ingredients//
-	// 	//REFACTOR//
-	// 	enterIngredientForm.on('submit', function(e){
-	// 		e.preventDefault();
-	// 		$this = $(this);
-	// 		var name = $this.find('#ingredient-name').val();
-	// 		var quantity = $this.find('#ingredient-quantity').val();
-	// 		var unit = $this.find('#ingredient-unit').val();
-	// 		$this.find('#ingredient-name').val('');
-	// 		$this.find('#ingredient-quantity').val('');
-	// 		$this.find('#ingredient-unit').val('');
-	// 		var thisIngredient = new Ingredient(name, quantity, unit);
-	// 		thisRecipe.ingredients.push(thisIngredient);
-	// 		console.log(thisIngredient);
-	// 		ingredientListUl.append(thisIngredient.el);
-	// 	});
-
-	// 	enterRecipeButton.on('click', function(){
-	// 		$('.recipe-title').text('');
-	// 		$('.ingredient-list-ul').empty();
-
-	// 		myRecipeLibrary.recipes.push(thisRecipe);
-	// 		console.log(myRecipeLibrary);
-	// 	});
-
-	// });
-
-	
-
-});
 
 
 
