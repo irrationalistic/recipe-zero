@@ -16,6 +16,20 @@ $(document).on('ready', function() {
 		var startingDay = $('#new-plan-weekday').val();
 		//Creates "array of days" from Number of Days & Starting Day
 		var daysArray = arrayOfDays(numberDays,startingDay);
+
+		var thisMealPlan = new Planner(mealPlanName);
+		daysArray.forEach(function(day){
+			var newDay = new Day(day);
+			thisMealPlan.addDay(newDay);
+			selectedMeals.forEach(function(meal){
+				var newMeal = new Meal(meal);
+				newDay.addMeal(newMeal);
+			});
+		});
+
+		$('body').append(thisMealPlan.render());
+
+		/*
 		//Create new Meal for each value in selectedMeals & push to an array of Meal Objects
 		var mealObjects = _.map(selectedMeals, function(i){
 			return new Meal(i);
@@ -26,6 +40,7 @@ $(document).on('ready', function() {
 		});
 		//Create new Meal Plan
 		var thisMealPlan = new Planner(mealPlanName, dayObjects);
+		*/
 	});
 
 	var $recipeServingsForm = $('.recipe-servings-form');
@@ -34,8 +49,8 @@ $(document).on('ready', function() {
 	var $enterRecipeButton = $('.enter-recipe-button');
 	var $ingredientListUl = $('.ingredient-list-ul');
 	var $enterNewRecipe = $('.enter-new-recipe');
-	
-	
+
+
 	// //Enter New Recipe //
 
 	var thisRecipe = {};

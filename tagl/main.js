@@ -12,37 +12,63 @@ var arrayOfDays = function(number, startingDay){
 //helper function to extract elements from an array of objects
 var extractElements = function(objArr){
 	var tempArray = [];
-	for (var i = 0;i<objArr.length;i++){	
+	for (var i = 0;i<objArr.length;i++){
 		tempArray.push(objArr[i].el);
 	}
 	return tempArray;
 };
 
 /////////
-var Planner = function(name, daysArr){
-	this.daysArr = daysArr;
+var Planner = function(name){
+	this.daysArr = [];
 	this.name = name;
+	this.render();
+};
+
+Planner.prototype.addDay = function (day) {
+	this.daysArr.push(day);
 	this.render();
 };
 Planner.prototype.render = function(){
-	this.el = $('#meal-planner')
-		.clone()
-		.attr('id',null);
+	if(this.el === undefined){
+		this.el = $('#meal-planner')
+			.clone()
+			.attr('id',null);
+	}
 	this.el.find('.meal-plan-name').text(this.name);
-	$('body').append(this.el);
+
+	var elements = this.daysArr.map(function(day){
+		return day.render();
+	});
+
+	this.el.find('.day-container').empty().append(elements);
+	return this.el;
 };
 
-var Day = function(name, mealsArr){
-	this.mealsArr = mealsArr;
+var Day = function(name){
+	this.mealsArr = [];
 	this.name = name;
 	this.render();
 };
+Day.prototype.addMeal = function (meal) {
+	this.mealsArr.push(meal);
+	this.render();
+};
 Day.prototype.render = function(){
-	this.el = $('#calendar-day-temp')
-		.clone()
-		.attr('id', null);
+	if(this.el === undefined){
+		this.el = $('#calendar-day-temp')
+			.clone()
+			.attr('id', null);
+	}
 	this.el.find('.calendar-day-name').text(this.name);
-	$('.planner-content').append(this.el);
+
+	var elements = this.mealsArr.map(function(meal){
+		return meal.render();
+	});
+
+	this.el.find('.meal-item-list').empty().append(elements);
+
+	return this.el;
 };
 
 var Meal = function(name){
@@ -51,16 +77,16 @@ var Meal = function(name){
 	this.render();
 };
 Meal.prototype.render = function(){
-	this.el = $('#meal-item-temp')
-		.clone()
-		.attr('id', null);
+	if(this.el === undefined){
+		this.el = $('#meal-item-temp')
+			.clone()
+			.attr('id', null);
+		this.el.find('.meal-item-button').on('click', function(){
+			console.log("hello");
+		});
+	}
 	this.el.find('.meal-title').text(this.name);
-	console.log(this.el);
-	console.log(this.el.find('.meal-item-button'));
-	this.el.find('.meal-item-button').on('click', function(){
-		console.log("hello");
-	});
-	$('.meal-item-list').append(this.el);
+	return this.el;
 };
 ////////
 
@@ -74,12 +100,15 @@ var Ingredient = function(name, quantity, unit){
 	this.toMyLibrary();
 };
 Ingredient.prototype.render = function(){
-	this.el = $('#ingredient-temp')
-		.clone()
-		.attr('id', null);
+	if(this.el === undefined){
+		this.el = $('#ingredient-temp')
+			.clone()
+			.attr('id', null);
+	}
 	this.el.find('.ingredient-name').text(this.name);
 	this.el.find('.ingredient-quantity').text(this.quantity);
 	this.el.find('.ingredient-unit').text(this.unit);
+	return this.el;
 };
 Ingredient.prototype.toMyLibrary = function(){
 	myIngredientLibrary.ingredients.push(this);
@@ -97,10 +126,13 @@ var Recipe = function(){
 	this.servings = 0;
 };
 Recipe.prototype.render = function(){
-	this.el = $('#recipe-item-temp')
-		.clone()
-		.attr('id',null);
+	if(this.el === undefined){
+		this.el = $('#recipe-item-temp')
+			.clone()
+			.attr('id',null);
+	}
 	this.el.find('.recipe-title').text(this.name);
+	return this.el;
 };
 Recipe.prototype.addIngredient = function(name, quantity, unit){
 	var newIngredient = new Ingredient(name, quantity, unit);
@@ -146,17 +178,3 @@ var coconutFlour = new Ingredient('coconut flour', 1, 'cup');
 var driedCranberries = new Ingredient('dried cranberries', 1, 'cup');
 var sugar = new Ingredient('sugar', 1, 'cup');
 var eggs = new Ingredient('eggs', 1, 'whole');
-
-
-
-
-
-
-
-
-
-
-
-
-
-

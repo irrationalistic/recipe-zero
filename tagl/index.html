@@ -20,7 +20,7 @@
             <form action="" class="new-plan">
               Name your Meal Plan:
               <div class="form-group">
-                <input id="mean-plan-name" class="form-control" type="text"> 
+                <input id="mean-plan-name" class="form-control" type="text">
               </div>
               How many Days are you Planning for?
               <div class="form-group">
@@ -40,7 +40,7 @@
                   <option value="13">13</option>
                   <option value="14">14</option>
                   <option value="15">15</option>
-                </select> 
+                </select>
               </div>
               On which day does your Meal Plan start?
               <div class="form-group">
@@ -72,7 +72,7 @@
     </div>
 
     <!-- New Recipe Modal -->
-    
+
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-lg enter-new-recipe" data-toggle="modal" data-target="#newRecipeForm">
       Enter New Recipe
@@ -85,27 +85,27 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
              <!-- Form to enter recipe name   -->
             <h3>Recipe Name: <span class="recipe-title"></span></h3>
-              <form class="recipe-name-form"> 
+              <form class="recipe-name-form">
                 <input type="text" class="form-control" placeholder="Enter Recipe Name" id="recipe-name-input">
-                <input type="submit" class="form-control">            
-              </form> 
+                <input type="submit" class="form-control">
+              </form>
             <!-- Form to enter recipe servings   -->
             <h3>Servings: <span class="recipe-servings"></span></h3>
               <form action="" class="recipe-servings-form">
                 <input type="text" class="form-control" placeholder="Enter Serving Size (#)" id="recipe-servings-input">
-                <input type="submit" class="form-control"> 
+                <input type="submit" class="form-control">
               </form>
           </div>
           <div class="modal-body">
 
             <!--  Form to enter new ingredients  -->
-               <form class="enter-ingredient-form"> 
+               <form class="enter-ingredient-form">
                  <div class="form-group">
                      <input type="text" class="form-control" placeholder="ingredient" id="ingredient-name">
                      <input type="text" class="form-control" placeholder="quantity" id="ingredient-quantity">
                      <input type="text" class="form-control" placeholder="unit" id="ingredient-unit">
                      <input type="submit" class="form-control">
-                 </div> 
+                 </div>
                </form>
                <div class="page-header">
                  <h4>Entered Ingredients:</h4>
@@ -113,9 +113,9 @@
               <!--  Ingredients List -->
                <div class="ingredient-list">
                 <ul class="ingredient-list-ul">
-                  
+
                 </ul>
-              </div>       
+              </div>
 
           </div>
           <div class="modal-footer">
@@ -124,7 +124,7 @@
         </div>
       </div>
     </div>
-    
+
 
     <!-- Recipe Library Modal -->
 
@@ -142,12 +142,12 @@
             <h4 class="modal-title" id="myModalLabel">Recipe Library</h4>
           </div>
           <div class="modal-body">
-            
+
             <div id="recipe-library">
               <ul class="recipe-library-list">
               </ul>
             </div>
-          
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -158,20 +158,21 @@
     </div>
 
     <!-- Templates -->
-    <div class="templates display-none"> 
-      
+    <div class="templates display-none">
+
       <!-- Meal Planner Template -->
       <div id="meal-planner" class="container planner-content">
           <h3 class="meal-plan-name">Meal Plan Name</h3>
+          <div class="day-container"></div>
       </div>
 
       <!-- Calendar Day Template -->
       <div id="calendar-day-temp">
-        <h4 class="calendar-day-name text-center">Sunday</h4>         
+        <h4 class="calendar-day-name text-center">Sunday</h4>
             <ul class="meal-item-list list-group">
-             
+
             </ul>
-      </div> 
+      </div>
 
       <!-- Meal Item Temp -->
       <li id="meal-item-temp" class="list-group-item meal-item">
@@ -179,29 +180,29 @@
       <h5 class="meal-title">Breakfast</h5>
         <ul class="recipe-list list-group">
         </ul>
-      </li>  
+      </li>
 
       <!-- Ingredient Item Temp-->
       <li id="ingredient-temp" class="list-group-item ingredient-item text-center">
         <span class="ingredient-name"></span>
         <span class="ingredient-quantity"></span>
         <span class="ingredient-unit"></span>
-      </li> 
+      </li>
 
       <!--  Recipe Item Template -->
        <li id="recipe-item-temp" class="list-group-item">
          <h5 class="recipe-title">Enter Recipe...</h5>
-       </li> 
+       </li>
 
       <!-- Recipe Library -->
       <div id="recipe-library">
         <ul class="recipe-library-list">
         </ul>
       </div>
-  
+
     </div>
 
-    
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.js"></script>
