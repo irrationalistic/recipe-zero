@@ -68,94 +68,10 @@
             </form>
           </div>
         </div>
-      </div>
+      </div>ß
     </div>
 
-    <!-- New Recipe Modal -->
-    
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg enter-new-recipe" data-toggle="modal" data-target="#newRecipeForm">
-      Enter New Recipe
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="newRecipeForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-             <!-- Form to enter recipe name   -->
-            <h3>Recipe Name: <span class="recipe-title"></span></h3>
-              <form class="recipe-name-form"> 
-                <input type="text" class="form-control" placeholder="Enter Recipe Name" id="recipe-name-input">
-                <input type="submit" class="form-control">            
-              </form> 
-            <!-- Form to enter recipe servings   -->
-            <h3>Servings: <span class="recipe-servings"></span></h3>
-              <form action="" class="recipe-servings-form">
-                <input type="text" class="form-control" placeholder="Enter Serving Size (#)" id="recipe-servings-input">
-                <input type="submit" class="form-control"> 
-              </form>
-          </div>
-          <div class="modal-body">
 
-            <!--  Form to enter new ingredients  -->
-               <form class="enter-ingredient-form"> 
-                 <div class="form-group">
-                     <input type="text" class="form-control" placeholder="ingredient" id="ingredient-name">
-                     <input type="text" class="form-control" placeholder="quantity" id="ingredient-quantity">
-                     <input type="text" class="form-control" placeholder="units" id="ingredient-unit">
-                     <input type="submit" class="form-control">
-                 </div> 
-               </form>
-               <div class="page-header">
-                 <h4>Entered Ingredients:</h4>
-               </div>
-              <!--  Ingredients List -->
-               <div class="ingredient-list">
-                <ul class="ingredient-list-ul">
-                  
-                </ul>
-              </div>       
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary enter-recipe-button" data-dismiss="modal">Save Recipe</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-
-    <!-- Recipe Library Modal -->
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#recipeLibraryModal">
-      Recipe Library
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="recipeLibraryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Recipe Library</h4>
-          </div>
-          <div class="modal-body">
-            
-            <div id="recipe-library">
-              <ul class="recipe-library-list">
-              </ul>
-            </div>
-          
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Templates -->
     <div class="templates display-none"> 
