@@ -18,6 +18,9 @@ $(document).on('ready', function() {
 		var daysArray = arrayOfDays(numberDays,startingDay);
 
 		var thisMealPlan = new Planner(mealPlanName);
+		$('body').append(thisMealPlan.render());
+
+		window.plan = thisMealPlan;
 		daysArray.forEach(function(day){
 			var newDay = new Day(day);
 			thisMealPlan.addDay(newDay);
@@ -27,7 +30,8 @@ $(document).on('ready', function() {
 			});
 		});
 
-		$('body').append(thisMealPlan.render());
+		// thisMealPlan.render().appendTo('body');
+
 
 		/*
 		//Create new Meal for each value in selectedMeals & push to an array of Meal Objects
